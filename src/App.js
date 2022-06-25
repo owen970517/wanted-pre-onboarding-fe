@@ -4,20 +4,21 @@ import Header from './Components/Header';
 import Page from './Components/Page';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  /*   const [isLogin, setIsLogin] = useState(false);
+  const user = localStorage.getItem('insta');
+  console.log(user);
   useEffect(() => {
-    const user = localStorage.getItem('insta');
     if (user) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [user]); */
   return (
     <>
       <BrowserRouter>
-        <Header isLogin={isLogin} />
-        <Page isLogin={isLogin} />
+        <Header />
+        <Page />
       </BrowserRouter>
     </>
   );
