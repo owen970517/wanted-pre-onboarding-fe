@@ -24,26 +24,24 @@ function Home() {
     },
   ]);
   const [comments, setComments] = useState([
-    {
-      comment: 'qweqwe ',
-    },
-    {
-      comment: 'zxcxzc',
-    },
+    'qwewqewqeq',
+    'asdsadsadsa',
+    'zxczxczx',
   ]);
   const [value, setInput] = useState('');
-  const handleChange = (e) => {
+  const handleChange = (e, index) => {
     setInput(e.target.value);
-    console.log(value);
+    /*     const { value } = e.target;
+    const newComment = [...comments];
+    newComment[index] = value;
+    setInput(newComment); */
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e, index) => {
     e.preventDefault();
-    console.log(e.id);
-    let newComments = [...comments, { comment: value }];
+    let newComments = [...comments, value];
     setComments(newComments);
     setInput('');
   };
-
   return (
     <>
       {loading && <Animation />}
@@ -63,19 +61,19 @@ function Home() {
                   setLoading(false);
                 }}
               />
-
               {comments.map((comment, index) => (
                 <UserComment key={index}>
                   <h1>{menu.id}</h1>
-                  <h2>{comment.comment}</h2>
+                  <h2>{comment}</h2>
                 </UserComment>
               ))}
-              <CommentList onSubmit={onSubmit}>
+              <CommentList key={index} onSubmit={(e) => onSubmit(e, index)}>
                 <Comments
+                  key={index}
                   type="text"
                   placeholder="댓글달기"
                   value={value}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e, index)}
                 />
                 <button onClick={onSubmit}>게시</button>
               </CommentList>
